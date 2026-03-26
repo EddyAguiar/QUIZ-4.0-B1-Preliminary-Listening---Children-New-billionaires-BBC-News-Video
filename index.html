@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>🎧 B1 Listening: Children New billionaires (BBC News)</title>
+<style>
+  /* ----- RESET & GLOBAL ----- */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  body {
+    background: linear-gradient(135deg, #f0f4f8 0%, #cfdfed 100%);
+    color: #1e2a3e;
+    line-height: 1.6;
+    padding: 20px;
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 980px;
+    margin: 0 auto;
+  }
+
+  /* ----- HEADER ----- */
+  header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  h1 {
+    color: #1e466e;
+    margin-bottom: 10px;
+    font-size: 2.1rem;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.05);
+  }
+
+  .description {
+    color: #2c5282;
+    font-size: 1rem;
+    margin-bottom: 12px;
+  }
+
+  /* ----- VIDEO SECTION ----- */
+  .video-section {
+    background: #e1f0fa;
+    padding: 18px;
+    border-radius: 14px;
+    margin-bottom: 20px;
+    border: 1px solid #90cdf4;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  }
+
+  .video-section p {
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: #2b6cb0;
+  }
+
+  video {
+    width: 100%;
+    border-radius: 12px;
+    outline: none;
+    background: #000;
+  }
+
+  /* ----- TRANSCRIPT TOGGLE & CONTENT ----- */
+  .toggle-reading {
+    margin: 0 auto 18px auto;
+    display: block;
+    background: #2c7da0;
+    color: white;
+    padding: 10px 24px;
+    border-radius: 40px;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    font-weight: 700;
+    width: fit-content;
+    transition: 0.2s;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .toggle-reading:hover {
+    background: #1f5e7e;
+    transform: scale(1.01);
+  }
+
+  .reading-text {
+    background: white;
+    border-radius: 12px;
+    padding: 18px;
+    margin-bottom: 18px;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.05);
+    border-left: 6px solid #2c7da0;
+    display: none;
+    max-height: 550px;
+    overflow-y: auto;
+  }
+
+  .reading-text.show {
+    display: block;
+  }
+
+  .reading-text h2 {
+    color: #2c7da0;
+    margin-bottom: 12px;
+    font-size: 1.5rem;
+    border-left: 4px solid #2c7da0;
+    padding-left: 12px;
+  }
+
+  .speaker-block {
+    background: #f9fafc;
+    margin: 16px 0;
+    padding: 14px;
+    border-radius: 14px;
+  }
+
+  .eng {
+    font-weight: 600;
+    margin-bottom: 8px;
+    line-height: 1.6;
+    color: #1f3a5f;
+  }
+
+  hr {
+    margin: 12px 0;
+    border-color: #cbd5e0;
+  }
+
+  /* ----- INFO BOXES ----- */
+  .pre-listening,
+  .focus-points {
+    padding: 14px 18px;
+    border-radius: 16px;
+    margin-bottom: 20px;
+  }
+
+  .pre-listening {
+    background: #fff4e6;
+    border-left: 6px solid #e67e22;
+  }
+
+  .pre-listening h3 {
+    color: #c4450c;
+    margin-bottom: 8px;
+  }
+
+  .focus-points {
+    background: #e6f7ec;
+    border-left: 6px solid #2ecc71;
+  }
+
+  .focus-points h3 {
+    color: #1f7b4d;
+  }
+
+  ul {
+    margin-left: 20px;
+    margin-top: 8px;
+  }
+
+  /* ----- QUIZ CONTAINER ----- */
+  .quiz-container {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    margin-top: 10px;
+  }
+
+  .progress-container {
+    background: #f8fafc;
+    padding: 12px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #e2e8f0;
+  }
+
+  .progress-bar {
+    height: 8px;
+    background: #e2e8f0;
+    border-radius: 5px;
+    flex-grow: 1;
+    margin: 0 12px;
+    overflow: hidden;
+  }
+
+  .progress {
+    height: 100%;
+    background: linear-gradient(90deg, #2c7da0, #48bb78);
+    width: 0%;
+    transition: width 0.3s;
+  }
+
+  .question-count {
+    font-weight: 700;
+    color: #2d3748;
+    white-space: nowrap;
+  }
+
+  .question-container {
+    padding: 20px 28px;
+  }
+
+  .question-text {
+    font-weight: 800;
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+    color: #1e466e;
+    background: #f0f9ff;
+    padding: 10px 14px;
+    border-radius: 20px;
+  }
+
+  .options-container {
+    margin: 12px 0;
+  }
+
+  .option {
+    margin: 12px 0;
+    padding: 12px 16px;
+    background: #f9f9ff;
+    border: 2px solid #e2e8f0;
+    border-radius: 16px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+  }
+
+  .option:hover {
+    background: #eef2ff;
+    border-color: #90cdf4;
+    transform: translateX(6px);
+  }
+
+  .option input {
+    margin-right: 14px;
+    transform: scale(1.1);
+    accent-color: #2c7da0;
+  }
+
+  .option.correct {
+    background: #d1fae5;
+    border-color: #48bb78;
+    color: #14532d;
+  }
+
+  .option.incorrect {
+    background: #ffe4e2;
+    border-color: #fda4af;
+    color: #991b1b;
+  }
+
+  .feedback {
+    padding: 12px 18px;
+    border-radius: 16px;
+    margin: 16px 0;
+    display: none;
+    font-weight: 500;
+  }
+
+  .feedback.correct {
+    background: #d4edda;
+    border-left: 6px solid #2ecc71;
+    color: #155724;
+  }
+
+  .feedback.incorrect {
+    background: #f8d7da;
+    border-left: 6px solid #e74c3c;
+    color: #721c24;
+  }
+
+  .explanation {
+    background: #f1f9fe;
+    padding: 12px 18px;
+    border-radius: 16px;
+    margin-top: 12px;
+    border-left: 5px solid #3498db;
+    display: none;
+    font-size: 0.95rem;
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+    padding: 16px 28px;
+    border-top: 1px solid #e2e8f0;
+    background: #fefefe;
+  }
+
+  button {
+    padding: 10px 22px;
+    background: #2c7da0;
+    color: white;
+    border: none;
+    border-radius: 40px;
+    cursor: pointer;
+    font-weight: 700;
+    transition: 0.15s;
+    font-size: 0.9rem;
+  }
+
+  button:hover {
+    background: #1e5a77;
+    transform: translateY(-2px);
+  }
+
+  button:disabled {
+    background: #b9c8dc;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  #restart-btn {
+    background: #48bb78;
+  }
+
+  #restart-btn:hover {
+    background: #2f9e5a;
+  }
+
+  .results {
+    text-align: center;
+    padding: 32px 20px;
+    display: none;
+    background: white;
+    border-radius: 28px;
+  }
+
+  .score {
+    font-size: 1.8rem;
+    margin: 20px 0;
+    color: #1e466e;
+    font-weight: 800;
+  }
+
+  .circle-chart {
+    width: 180px;
+    margin: 0 auto;
+  }
+
+  .circle-bg {
+    fill: none;
+    stroke: #e2e8f0;
+    stroke-width: 3.8;
+  }
+
+  .circle {
+    fill: none;
+    stroke-width: 2.8;
+    stroke-linecap: round;
+    transform: rotate(-90deg);
+    transform-origin: 50% 50%;
+    transition: stroke-dasharray 0.6s ease;
+  }
+
+  .listening-tip {
+    background: #e0f2fe;
+    border-left: 6px solid #0f5b7a;
+    padding: 14px 18px;
+    border-radius: 16px;
+    margin: 20px 0;
+  }
+
+  footer {
+    margin-top: 24px;
+    text-align: center;
+    color: #2c5282;
+    font-size: 0.85rem;
+  }
+
+  @media (max-width: 660px) {
+    .buttons {
+      flex-direction: column;
+      gap: 10px;
+    }
+    button {
+      width: 100%;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>🎧 B1 Listening: Children & Billionaire Entrepreneurs</h1>
+    <p class="description">
+      <strong>🎙️ Step 1:</strong> Watch the BBC News video about young entrepreneurs – Thomas, Kiowa, and the Incubator School.<br>
+      <strong>📝 Step 2:</strong> Answer the 10 multiple‑choice questions.<br>
+      <strong>📖 Step 3:</strong> Check the transcript after answering to verify details.
+    </p>
+  </header>
+
+  <!-- VIDEO SECTION -->
+  <div class="video-section">
+    <p>🎬 <strong>BBC NEWS VIDEO</strong></p>
+    <video controls width="100%">
+      <source src="Children-New-billionaires-BBC-News.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <p style="font-size: 0.85rem; margin-top: 10px; background: #ffffffaa; padding: 6px; border-radius: 20px;">
+      📌 Meet Thomas (15, app developer), Kiowa (7, inventor), and students from the Incubator School. Listen for their ideas, advantages, and future dreams.
+    </p>
+  </div>
+
+  <!-- PRE-LISTENING PREDICTION -->
+  <div class="pre-listening">
+    <h3>🔍 Before you watch: Predict the theme</h3>
+    <p>You will see young people who are already entrepreneurs or want to become one. Think about:</p>
+    <ul>
+      <li>What kind of products or services do children create?</li>
+      <li>Why might kids have a special advantage in business?</li>
+      <li>What does "being your own boss" mean to a seven‑year‑old?</li>
+    </ul>
+    <p style="font-style: italic; color: #4b5563; margin-top: 6px;">⚡ Activate your mind: listen for names, technologies (apps, 3D printing), and school projects.</p>
+  </div>
+
+  <!-- FOCUS POINTS -->
+  <div class="focus-points">
+    <h3>🎯 Focus while listening</h3>
+    <ul>
+      <li><strong>Thomas (15):</strong> What does he create? (mobile apps / Google Glass). What summer project is he working on? (3D printing patent, faster printing).</li>
+      <li><strong>Incubator School:</strong> What is its main goal? (teach entrepreneurship from age 11). What do kids learn? (advertising, profit‑sharing, starting companies).</li>
+      <li><strong>12‑year‑old students:</strong> Why do they think kids are more creative? (not boxed in by the world).</li>
+      <li><strong>Kiowa (7):</strong> What does she like about being an entrepreneur? (freedom, not following orders). What is her future dream? (zoologist).</li>
+    </ul>
+  </div>
+
+  <!-- TRANSCRIPT BUTTON + TEXT (English only) -->
+  <button id="toggle-reading" class="toggle-reading" aria-expanded="false">📄 Show Full Transcript (after trying)</button>
+  <div class="reading-text" id="reading-text">
+    <h2>📝 Video Transcript (BBC News)</h2>
+    <div class="speaker-block">
+      <div class="eng"><strong>🎤 NARRATOR:</strong> Is this a future billionaire? At 15 Thomas creates and sells apps for smartphones and Google Glass. That’s what he’s wearing, by the way.<br>
+      <strong>THOMAS:</strong> They’re recording too?<br>
+      <strong>NARRATOR:</strong> And that’s how he’s filming us with these glasses.<br><br>
+      <strong>NARRATOR:</strong> And Thomas has big plans for his summer. He wants to revolutionise 3D printing technology.<br>
+      <strong>THOMAS:</strong> Recently I've applied for a patent on 3D-printing, trying to make 3D printing faster and more reliable. The key there is speed and we are trying to print ten times faster than current generation 3D printers.<br>
+      <strong>NARRATOR:</strong> Thomas is self-taught when it comes to business and coding.</div>
+    </div>
+    <div class="speaker-block">
+      <div class="eng"><strong>🎤 NARRATOR:</strong> This school is trying to create entrepreneurs starting from age 11.<br>
+      <strong>CHILD:</strong> For advertising, we had to advertise, I used social media as a device. And then we have, up here, this is a profit-share plan.<br>
+      <strong>NARRATOR:</strong> At the Incubator School kids are encouraged to start companies on school time.</div>
+    </div>
+    <div class="speaker-block">
+      <div class="eng"><strong>🎤 NARRATOR:</strong> These twelve-year-old captains of industry plan to sell school supplies to their classmates. They say kids have a big advantage when it comes to creating the next big thing.<br>
+      <strong>CHILD:</strong> Kids personally are more creative because they haven’t been boxed in by the world yet, and haven’t, you know, you’re going to do this, you’re going to do that, you’re going to do this. Kids, you know, still have that mind where for example, I’m going to be superman when I grow up.</div>
+    </div>
+    <div class="speaker-block">
+      <div class="eng"><strong>🎤 KIOWA:</strong> I feel like being an entrepreneur, you don’t have to follow somebody else’s orders, you can just be more free.<br>
+      <strong>NARRATOR:</strong> Kiowa’s dream is to become a zoologist while making Boo Boo Brands into a household name.</div>
+    </div>
+    <p style="margin-top: 12px; font-style: italic;">📝 Based on BBC News report – used for educational listening practice.</p>
+  </div>
+
+  <!-- QUIZ SECTION (10 questions) -->
+  <div class="quiz-container">
+    <div class="progress-container">
+      <div class="question-count">Question <span id="current">1</span> of <span id="total">10</span></div>
+      <div class="progress-bar" aria-hidden="true"><div class="progress" id="progress"></div></div>
+    </div>
+    <div class="question-container">
+      <div class="question-text" id="question"></div>
+      <div class="options-container" id="options"></div>
+      <div class="feedback" id="feedback" role="status"></div>
+      <div class="explanation" id="explanation"></div>
+    </div>
+    <div class="buttons">
+      <button id="prev-btn" disabled>◀ Previous</button>
+      <button id="next-btn">Next ▶</button>
+    </div>
+    <div class="results" id="results">
+      <h2>🎯 Listening Practice Completed!</h2>
+      <svg class="circle-chart" viewBox="0 0 36 36" width="170" height="170" role="img" aria-label="score chart">
+        <circle class="circle-bg" cx="18" cy="18" r="16"></circle>
+        <circle class="circle" cx="18" cy="18" r="16" stroke="#2c7da0" stroke-dasharray="0,100"></circle>
+        <g class="circle-chart-text"><text x="18" y="20.5" text-anchor="middle" font-size="8" fill="#2c7da0">0%</text></g>
+      </svg>
+      <div class="score" id="final-score">Score: 0/10</div>
+      <button id="restart-btn">⟳ Restart Practice</button>
+    </div>
+  </div>
+
+  <div class="listening-tip">
+    <strong>🧠 Teacher's Insight:</strong> Listen for specific details: what Thomas sells (mobile apps), his summer goal (3D printing speed), the Incubator School’s mission, the 12‑year‑olds’ creativity argument, and Kiowa’s freedom + future dream. The transcript helps verify.
+  </div>
+
+  <footer style="text-align:center;margin-top:40px;color:#777;">
+       Material criado para estudo — Edson D'Aguiar<br>
+      <span class="copyright">© @InglêsFácilGratuito</span>
+</footer>
+</div>
+
+<script>
+  // ---------- 10 QUESTIONS (first 6 from original, 4 new based on video) ----------
+  const quizData = [
+    { // Q1
+      question: "1. What does 15‑year‑old Thomas do?",
+      options: ["A - He is a 15‑year‑old billionaire", "B - He sells mobile apps", "C - He films videos for YouTube"],
+      answer: "B",
+      explanation: "🎧 Narrator: 'At 15 Thomas creates and sells apps for smartphones and Google Glass.' He is not yet a billionaire; he sells apps."
+    },
+    { // Q2
+      question: "2. This summer Thomas wants to …",
+      options: ["A - go on holiday", "B - improve 3D printing technology", "C - create a new video game"],
+      answer: "B",
+      explanation: "🎧 Thomas: 'Recently I've applied for a patent on 3D-printing, trying to make 3D printing faster and more reliable.' He wants to revolutionise 3D printing."
+    },
+    { // Q3
+      question: "3. What is the main objective of the Incubator School shown in the video?",
+      options: ["A - to teach students how to create their own business", "B - to teach students how to advertise a product", "C - to teach students how to use social media"],
+      answer: "A",
+      explanation: "🎧 Narrator: 'This school is trying to create entrepreneurs starting from age 11.' Kids start companies on school time. The main goal is entrepreneurship."
+    },
+    { // Q4
+      question: "4. According to one of the 12‑year‑old children, why can kids be better at creating new things?",
+      options: ["A - They can be more original and creative", "B - They work faster than adults", "C - They know more about technology"],
+      answer: "A",
+      explanation: "🎧 Child: 'Kids personally are more creative because they haven’t been boxed in by the world yet.' They have original thinking, not limited by expectations."
+    },
+    { // Q5
+      question: "5. What does seven‑year‑old Kiowa Kavovit like about being an entrepreneur?",
+      options: ["A - She can be an inventor", "B - She can be on TV", "C - She can do what she wants and be free"],
+      answer: "C",
+      explanation: "🎧 Kiowa: 'I feel like being an entrepreneur, you don’t have to follow somebody else’s orders, you can just be more free.'"
+    },
+    { // Q6
+      question: "6. What does Kiowa dream of becoming in the future?",
+      options: ["A - A zoologist", "B - A business owner only", "C - A TV presenter"],
+      answer: "A",
+      explanation: "🎧 Narrator: 'Kiowa’s dream is to become a zoologist while making Boo Boo Brands into a household name.'"
+    },
+    { // Q7 (new) – additional detail about Thomas's wearable tech
+      question: "7. What technology does Thomas use to film the interview?",
+      options: ["A - A smartphone", "B - Google Glass", "C - A hidden camera"],
+      answer: "B",
+      explanation: "🎧 Narrator: 'That’s what he’s wearing, by the way. And that’s how he’s filming us with these glasses.' Thomas wears Google Glass to record."
+    },
+    { // Q8 (new) – about the Incubator School activities
+      question: "8. At the Incubator School, children are encouraged to …",
+      options: ["A - focus only on maths and science", "B - start companies during school time", "C - sell products after school"],
+      answer: "B",
+      explanation: "🎧 Narrator: 'At the Incubator School kids are encouraged to start companies on school time.'"
+    },
+    { // Q9 (new) – 12-year-olds' product
+      question: "9. What do the 12‑year‑old entrepreneurs plan to sell?",
+      options: ["A - Smartphone apps", "B - School supplies", "C - 3D printers"],
+      answer: "B",
+      explanation: "🎧 Narrator: 'These twelve‑year‑old captains of industry plan to sell school supplies to their classmates.'"
+    },
+    { // Q10 (new) – Thomas's patent goal
+      question: "10. What speed goal does Thomas mention for his 3D printing project?",
+      options: ["A - Twice as fast as current printers", "B - Ten times faster than current generation", "C - Fifty percent faster"],
+      answer: "B",
+      explanation: "🎧 Thomas: 'we are trying to print ten times faster than current generation 3D printers.'"
+    }
+  ];
+
+  // DOM elements
+  const questionEl = document.getElementById('question');
+  const optionsEl = document.getElementById('options');
+  const feedbackEl = document.getElementById('feedback');
+  const explanationEl = document.getElementById('explanation');
+  const prevBtn = document.getElementById('prev-btn');
+  const nextBtn = document.getElementById('next-btn');
+  const restartBtn = document.getElementById('restart-btn');
+  const resultsDiv = document.getElementById('results');
+  const progressFill = document.getElementById('progress');
+  const currentSpan = document.getElementById('current');
+  const totalSpan = document.getElementById('total');
+  const finalScoreSpan = document.getElementById('final-score');
+  const circleSvg = document.querySelector('.circle');
+  const circleText = document.querySelector('.circle-chart-text text');
+  const readingDiv = document.getElementById('reading-text');
+  const toggleReadingBtn = document.getElementById('toggle-reading');
+
+  // State
+  let currentQuestion = 0;
+  let score = 0;
+  let userAnswers = new Array(quizData.length).fill(null);
+
+  // Update progress bar
+  function updateProgressBar() {
+    const percent = ((currentQuestion + 1) / quizData.length) * 100;
+    progressFill.style.width = `${percent}%`;
+  }
+
+  // Show feedback for current question (if answered)
+  function showFeedbackForCurrent() {
+    const selected = userAnswers[currentQuestion];
+    if (!selected) return;
+    const isCorrect = (selected === quizData[currentQuestion].answer);
+    feedbackEl.textContent = isCorrect ? '✓ Correct! Great listening.' : '✗ Not quite. Check the explanation and listen again.';
+    feedbackEl.className = isCorrect ? 'feedback correct' : 'feedback incorrect';
+    feedbackEl.style.display = 'block';
+    explanationEl.innerHTML = `<strong>📌 Explanation:</strong> ${quizData[currentQuestion].explanation}`;
+    explanationEl.style.display = 'block';
+  }
+
+  // Render current question
+  function renderQuestion() {
+    const q = quizData[currentQuestion];
+    currentSpan.textContent = currentQuestion + 1;
+    questionEl.textContent = q.question;
+    optionsEl.innerHTML = '';
+    const savedAnswer = userAnswers[currentQuestion];
+
+    q.options.forEach((opt, idx) => {
+      const optLetter = opt.charAt(0);
+      const optDiv = document.createElement('div');
+      optDiv.className = 'option';
+      if (savedAnswer !== null) {
+        if (optLetter === q.answer) optDiv.classList.add('correct');
+        else if (optLetter === savedAnswer && savedAnswer !== q.answer) optDiv.classList.add('incorrect');
+      }
+      const radio = document.createElement('input');
+      radio.type = 'radio';
+      radio.name = 'answer';
+      radio.value = optLetter;
+      radio.id = `opt_${currentQuestion}_${idx}`;
+      if (savedAnswer !== null) radio.disabled = true;
+      if (savedAnswer === optLetter) radio.checked = true;
+
+      const label = document.createElement('label');
+      label.htmlFor = radio.id;
+      label.textContent = ` ${opt}`;
+      optDiv.appendChild(radio);
+      optDiv.appendChild(label);
+
+      if (savedAnswer === null) {
+        radio.addEventListener('change', (e) => {
+          if (e.target.checked) {
+            userAnswers[currentQuestion] = optLetter;
+            if (optLetter === q.answer) score++;
+            renderQuestion();
+            updateNavButtons();
+          }
+        });
+      }
+      optionsEl.appendChild(optDiv);
+    });
+
+    if (savedAnswer !== null) {
+      showFeedbackForCurrent();
+    } else {
+      feedbackEl.style.display = 'none';
+      explanationEl.style.display = 'none';
+    }
+    updateNavButtons();
+    updateProgressBar();
+  }
+
+  // Update Previous/Next buttons
+  function updateNavButtons() {
+    prevBtn.disabled = (currentQuestion === 0);
+    const isCurrentAnswered = (userAnswers[currentQuestion] !== null);
+    if (currentQuestion === quizData.length - 1) {
+      nextBtn.textContent = 'Finish';
+      if (isCurrentAnswered) {
+        nextBtn.removeEventListener('click', finishQuiz);
+        nextBtn.addEventListener('click', finishQuiz, { once: true });
+      } else {
+        nextBtn.removeEventListener('click', finishQuiz);
+      }
+    } else {
+      nextBtn.textContent = 'Next';
+      nextBtn.removeEventListener('click', finishQuiz);
+    }
+    nextBtn.disabled = !isCurrentAnswered;
+  }
+
+  // Navigation
+  function showNext() {
+    if (currentQuestion < quizData.length - 1) {
+      currentQuestion++;
+      renderQuestion();
+    }
+  }
+
+  function showPrev() {
+    if (currentQuestion > 0) {
+      currentQuestion--;
+      renderQuestion();
+    }
+  }
+
+  function finishQuiz() {
+    document.querySelector('.question-container').style.display = 'none';
+    document.querySelector('.buttons').style.display = 'none';
+    resultsDiv.style.display = 'block';
+    const totalQ = quizData.length;
+    const percentScore = (score / totalQ) * 100;
+    finalScoreSpan.textContent = `Score: ${score}/${totalQ}`;
+    const dash = `${percentScore}, 100`;
+    if (circleSvg) circleSvg.setAttribute('stroke-dasharray', dash);
+    if (circleText) circleText.textContent = `${Math.round(percentScore)}%`;
+    if (percentScore < 50) circleSvg?.setAttribute('stroke', '#e74c3c');
+    else if (percentScore < 80) circleSvg?.setAttribute('stroke', '#f39c12');
+    else circleSvg?.setAttribute('stroke', '#2ecc71');
+  }
+
+  function restartQuiz() {
+    currentQuestion = 0;
+    score = 0;
+    userAnswers.fill(null);
+    document.querySelector('.question-container').style.display = 'block';
+    document.querySelector('.buttons').style.display = 'flex';
+    resultsDiv.style.display = 'none';
+    nextBtn.removeEventListener('click', finishQuiz);
+    renderQuestion();
+  }
+
+  // Event listeners
+  prevBtn.addEventListener('click', showPrev);
+  nextBtn.addEventListener('click', () => {
+    if (currentQuestion === quizData.length - 1 && userAnswers[currentQuestion] !== null) {
+      finishQuiz();
+    } else {
+      showNext();
+    }
+  });
+  restartBtn.addEventListener('click', restartQuiz);
+
+  // Transcript toggle
+  toggleReadingBtn.addEventListener('click', () => {
+    const isShown = readingDiv.classList.toggle('show');
+    toggleReadingBtn.textContent = isShown ? '📖 Hide Transcript' : '📄 Show Full Transcript (after trying)';
+    toggleReadingBtn.setAttribute('aria-expanded', isShown ? 'true' : 'false');
+  });
+
+  // Initialize
+  totalSpan.textContent = quizData.length;
+  renderQuestion();
+  readingDiv.classList.remove('show');
+</script>
+</body>
+</html>
